@@ -6,67 +6,26 @@
 <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
-    function  MinutesToHours() {
-        const [amount, setAmount] = React.useState(0);
-        const [inverted, setInverted] = React.useState(false);
-        const onChange = (event) => {
-            setAmount(event.target.value);
-        }
-        const reset = () => setAmount(0);
-        const onFlip = () => {
-            reset();
-            setInverted((current) => !current);
-        }
-        return(
-            <div>
-                <div>
-                    <label htmlFor="minutes">Minutes</label>
-                    <input
-                        id="minutes"
-                        value={inverted ? amount * 60 : amount}
-                        placeholder="Minutes"
-                        type="number"
-                        onChange={onChange}
-                        disabled={inverted} 
-                    />
-                </div>
-                <div>
-                    <label htmlFor="hours">Hours</label>
-                    <input
-                        value={inverted ? amount : Math.round(amount / 60)}
-                        id="hours"
-                        placeholder="Hours"
-                        type="number"
-                        onChange={onChange}
-                        disabled={!inverted} 
-                    />
-                </div>
-                <button onClick={reset}>Reset</button>
-                <button onClick={onFlip}>{inverted ? "turn back" : "invert"}</button>
-            </div>
-        );
-    }
-    function KmToMiles() {
-        return <h3>KM 2 M</h3>
+    function Btn({text , big}) {
+        return (
+            <button style={{
+                backgroundColor: "tomato",
+                color:"white",
+                padding:"10px 20px",
+                border:0,
+                borderRadius: 10,
+                fontSize: big ? 20 : 16,
+            }}
+            >
+                {text}
+            </button>
+        )
     }
     function App() {
-        const [index, setIndex] = React.useState("xx")
-        const onSelect = (event) => {
-            setIndex(event.target.value)
-        };
-        console.log("render w/",index)
         return(
             <div>
-                <h1>Super Converter</h1>
-                <select value={index} onChange={onSelect}>
-                    <option value="xx">select your units</option>
-                    <option value="0">Minutes & Hours</option>
-                    <option value="1">Km & Miles</option>
-                </select>
-                <hr />
-                {index === "xx" ? "Please select your units" : null}
-                {index === "0" ? <MinutesToHours /> : null}
-                {index === "1" ? <KmToMiles /> : null}
+                <Btn text="Save Changes" big={true} />
+                <Btn text="Continue" big={false} />
             </div>
         );
     }
