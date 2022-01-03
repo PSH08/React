@@ -24,8 +24,8 @@
         )
     }
     Btn.protoTypes = {
-        text: PropTypes.string,
-        fontSize: PropTypes.number
+        text: PropTypes.string.isRequired,
+        fontSize: PropTypes.number.isRequired,
     }
     const MemorizedBtn = React.memo(Btn)
     function App() {
